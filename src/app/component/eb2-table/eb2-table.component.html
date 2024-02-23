@@ -1,0 +1,65 @@
+<div class="container mt-5">
+  <h2 class="text-center">Statistiques d'utilisation par type d'appareil</h2>
+  <div class="table-responsive">
+    <table class="table table-bordered">
+      <thead>
+      <tr>
+        <th>Année</th>
+        <th>month</th>
+        <th>Total Visites Ordinateur</th>
+        <th>Total Utilisateurs Ordinateur</th>
+        <th>Durée Ordinateur</th>
+        <th>Total Visites Smartphone</th>
+        <th>Total Utilisateurs Smartphone</th>
+        <th>Durée Smartphone</th>
+        <th>Total Visites Tablette</th>
+        <th>Total Utilisateurs Tablette</th>
+        <th>Durée Tablette</th>
+        <th>Total Visites Autre Appareil</th>
+        <th>Total Utilisateurs Autre Appareil</th>
+        <th>Durée Autre Appareil</th>
+        <th>Total Visites Android</th>
+        <th>Total Utilisateurs Android</th>
+        <th>Durée Android</th>
+        <th>Total Visites Windows</th>
+        <th>Total Utilisateurs Windows</th>
+        <th>Durée Windows</th>
+        <th>Total Visites iOS</th>
+        <th>Total Utilisateurs iOS</th>
+        <th>Durée iOS</th>
+        <th>Total Visites MacOS</th>
+        <th>Total Utilisateurs MacOS</th>
+        <th>Durée MacOS</th>
+        <th>Total Visites ChromeOS</th>
+        <th>Total Utilisateurs ChromeOS</th>
+        <th>Durée ChromeOS</th>
+        <th>Total Visites Linux</th>
+        <th>Total Utilisateurs Linux</th>
+        <th>Durée Linux</th>
+        <th>Total Visites Autre OS</th>
+        <th>Total Utilisateurs Autre OS</th>
+        <th>Durée Autre OS</th>
+        <th>Total Visites Chrome Mobile</th>
+        <th>Total Utilisateurs Chrome Mobile</th>
+        <th>Durée Chrome Mobile</th>
+        <th>Total Visites Safari</th>
+        <th>Total Utilisateurs Safari</th>
+        <th>Durée Safari</th>
+        <th>Total Visites Chrome</th>
+        <th>Total Utilisateurs Chrome</th>
+        <th>Durée Chrome</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr *ngFor="let data of dataset">
+        <ng-container *ngFor="let value of Object.values(data)">
+          <td *ngIf="value !== null && value !== undefined; else noData">{{ value }}</td>
+        </ng-container>
+        <ng-template #noData>
+          <td>No data available</td>
+        </ng-template>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

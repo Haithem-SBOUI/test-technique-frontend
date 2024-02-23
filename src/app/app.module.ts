@@ -8,6 +8,10 @@ import {DashboardComponent} from './component/dashboard/dashboard.component';
 import {Eb1Component} from './component/eb1/eb1.component';
 import {HttpClientModule} from "@angular/common/http";
 import {Eb2FormComponent} from './component/eb2-form/eb2-form.component';
+import { Eb2TableComponent } from './component/eb2-table/eb2-table.component';
+import {ReactiveFormsModule} from "@angular/forms";
+import { Eb3FormComponent } from './component/eb3-form/eb3-form.component';
+import { Eb3ChartComponent } from './component/eb3-chart/eb3-chart.component';
 
 @NgModule({
   declarations: [
@@ -15,12 +19,16 @@ import {Eb2FormComponent} from './component/eb2-form/eb2-form.component';
     NavbarComponent,
     DashboardComponent,
     Eb1Component,
-    Eb2FormComponent
+    Eb2FormComponent,
+    Eb2TableComponent,
+    Eb3FormComponent,
+    Eb3ChartComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    HttpClientModule
+    HttpClientModule,
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
