@@ -3,11 +3,13 @@ import { RouterModule, Routes } from '@angular/router';
 import {NavbarComponent} from "./component/navbar/navbar.component";
 import {DashboardComponent} from "./component/dashboard/dashboard.component";
 import {Eb1Component} from "./component/eb1/eb1.component";
+import {Eb2FormComponent} from "./component/eb2-form/eb2-form.component";
 
 const routes: Routes = [
   {path:'' , component:NavbarComponent , children:[
       { path: 'dashboard', component: DashboardComponent },
       { path: 'eb1', component: Eb1Component },
+      { path: 'eb2-form', component: Eb2FormComponent },
     ]}
 ];
 

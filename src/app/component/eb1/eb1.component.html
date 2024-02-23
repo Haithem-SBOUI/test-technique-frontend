@@ -1,1 +1,21 @@
-<p>eb1 works!</p>
+
+<div class="container mt-4">
+  <p>eb1 works!</p>
+  {{ this.dataset | json }}
+
+  <table class="table border">
+    <thead>
+    <tr>
+      <th>Semaine</th>
+      <th>Nb Visites</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let data of dataset">
+      <td>{{ data.debutsemaine | date:'dd-MMMM-yyyy' }}</td>
+      <td>{{ data.total_visits }}</td>
+    </tr>
+    </tbody>
+  </table>
+</div>
+
