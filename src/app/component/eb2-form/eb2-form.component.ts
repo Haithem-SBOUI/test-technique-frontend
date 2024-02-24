@@ -1,5 +1,4 @@
 import {Component, OnInit} from '@angular/core';
-import {DnmaService} from "../../service/dnma.service";
 import {FormBuilder, FormGroup} from "@angular/forms";
 import {Router} from "@angular/router";
 
@@ -8,7 +7,7 @@ import {Router} from "@angular/router";
   templateUrl: './eb2-form.component.html',
   styleUrls: ['./eb2-form.component.css']
 })
-export class Eb2FormComponent implements OnInit {
+export class Eb2FormComponent {
   formulaire!: FormGroup;
 
   constructor(private fb: FormBuilder,
@@ -19,13 +18,8 @@ export class Eb2FormComponent implements OnInit {
     });
   }
 
-  ngOnInit(): void {
-
-
-  }
 
   submitForm() {
-    // Handle form submission logic here
     console.log(this.formulaire.value);
     const uaiValue = this.formulaire.get('uai')?.value;
     const choix = this.formulaire.get('choix')?.value;

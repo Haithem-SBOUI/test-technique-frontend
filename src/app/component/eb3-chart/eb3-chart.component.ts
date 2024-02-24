@@ -11,16 +11,13 @@ import {Chart} from "angular-highcharts";
 export class Eb3ChartComponent implements OnInit {
   dataset!: any;
   ordinateurList!: any;
-  ordinateurList1: any = [3403, 32];
   smartphoneList!: any;
   tabletteList!: any;
-  newData!: any;
   chartOrdinateur!: any;
   chartSmartphone!: any;
   chartTablette!: any;
   uai!: any;
   year!: any;
-
 
 
   constructor(private dnmaService: DnmaService,
@@ -36,15 +33,15 @@ export class Eb3ChartComponent implements OnInit {
 
   }
 
-  fetchData(uai :string, year :string){
+  fetchData(uai: string, year: string) {
     this.dnmaService.eb3Chart(uai, year).subscribe(
       (response: any) => {
         this.dataset = response.results;
         console.log(this.dataset);
-        this.ordinateurList = this.dataset.map((item :any) => (item["total_visits_ordinateur"]));
+        this.ordinateurList = this.dataset.map((item: any) => (item["total_visits_ordinateur"]));
+        this.smartphoneList = this.dataset.map((item: any) => (item["total_visites_smartphone"]));
+        this.tabletteList = this.dataset.map((item: any) => (item["total_visites_tablette"]));
 
-        this.smartphoneList = this.dataset.map((item :any) => (item["total_visites_smartphone"]));
-        this.tabletteList = this.dataset.map((item :any) => (item["total_visites_tablette"]));
         this.chartSmartphone = new Chart({
             chart: {
               type: 'bar'
@@ -109,11 +106,6 @@ export class Eb3ChartComponent implements OnInit {
       }
     );
   }
-
-
-
-
-
 
 
 }

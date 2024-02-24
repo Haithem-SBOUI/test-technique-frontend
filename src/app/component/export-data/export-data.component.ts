@@ -45,8 +45,6 @@ export class ExportDataComponent implements OnInit {
     const selectedLink = this.listOfFiles.find((link: any) => link.rel === choix);
     console.log("selectedLink", selectedLink);
     window.open(selectedLink.href, '_blank');
-
-
   }
 
 

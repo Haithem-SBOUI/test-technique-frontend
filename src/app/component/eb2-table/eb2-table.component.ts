@@ -11,10 +11,9 @@ export class Eb2TableComponent implements OnInit {
   protected readonly Object = Object;
   dataset!: any;
   year!: boolean;
-
-
   uai!: any;
   choix!: any;
+
   constructor(private dnmaService: DnmaService,
               private route: ActivatedRoute) {
   }
@@ -27,16 +26,16 @@ export class Eb2TableComponent implements OnInit {
 
   }
 
-  fetchData(uai :string, choix :string){
-    if(choix == "annee"){
-      this.year=true;
+  fetchData(uai: string, choix: string) {
+    if (choix == "annee") {
+      this.year = true;
       this.byYear(uai);
-    }else{
-      this.year=false;
-
+    } else {
+      this.year = false;
       this.byMonth(uai);
     }
   }
+
   byYear(uai: string) {
     this.dnmaService.findByYearAndUai(uai).subscribe(
       (response: any) => {
@@ -50,7 +49,7 @@ export class Eb2TableComponent implements OnInit {
   }
 
   byMonth(uai: string) {
-    this.dnmaService.findByMonth(uai).subscribe(
+    this.dnmaService.findByMonthAndUai(uai).subscribe(
       (response: any) => {
         this.dataset = response.results;
         this.dataset.sort((a: any, b: any) => a["month(debutsemaine)"] - b["month(debutsemaine)"]);

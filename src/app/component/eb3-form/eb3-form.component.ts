@@ -7,7 +7,7 @@ import {Router} from "@angular/router";
   templateUrl: './eb3-form.component.html',
   styleUrls: ['./eb3-form.component.css']
 })
-export class Eb3FormComponent implements OnInit {
+export class Eb3FormComponent{
   formulaire!: FormGroup;
 
   constructor(private fb: FormBuilder,
@@ -16,11 +16,6 @@ export class Eb3FormComponent implements OnInit {
       uai: [''],
       year: ['']
     });
-  }
-
-  ngOnInit(): void {
-
-
   }
 
   submitForm() {
