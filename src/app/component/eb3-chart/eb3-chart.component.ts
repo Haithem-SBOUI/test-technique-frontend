@@ -1,6 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {DnmaService} from "../../service/dnma.service";
 import {ActivatedRoute} from "@angular/router";
+import {Chart} from "angular-highcharts";
 
 @Component({
   selector: 'app-eb3-chart',
@@ -9,9 +10,19 @@ import {ActivatedRoute} from "@angular/router";
 })
 export class Eb3ChartComponent implements OnInit {
   dataset!: any;
-
+  ordinateurList!: any;
+  ordinateurList1: any = [3403, 32];
+  smartphoneList!: any;
+  tabletteList!: any;
+  newData!: any;
+  chartOrdinateur!: any;
+  chartSmartphone!: any;
+  chartTablette!: any;
   uai!: any;
   year!: any;
+
+
+
   constructor(private dnmaService: DnmaService,
               private route: ActivatedRoute) {
   }
@@ -22,38 +33,87 @@ export class Eb3ChartComponent implements OnInit {
 
     this.fetchData(this.uai, this.year);
 
+
   }
 
   fetchData(uai :string, year :string){
-    if(year == "annee"){
-      this.byYear(uai);
-    }else{
-      this.byMonth(uai);
-    }
-  }
-  byYear(uai: string) {
-    this.dnmaService.findByYearAndUai(uai).subscribe(
+    this.dnmaService.eb3Chart(uai, year).subscribe(
       (response: any) => {
         this.dataset = response.results;
         console.log(this.dataset);
+        this.ordinateurList = this.dataset.map((item :any) => (item["total_visits_ordinateur"]));
+
+        this.smartphoneList = this.dataset.map((item :any) => (item["total_visites_smartphone"]));
+        this.tabletteList = this.dataset.map((item :any) => (item["total_visites_tablette"]));
+        this.chartSmartphone = new Chart({
+            chart: {
+              type: 'bar'
+            },
+            title: {
+              text: 'Nombre de visites par Smartphone'
+            },
+            credits: {
+              enabled: false
+            },
+            series: [
+              {
+                name: 'Nombre de Visite',
+                data: this.smartphoneList
+              } as any
+            ]
+          }
+        )
+
+        this.chartOrdinateur = new Chart({
+            chart: {
+              type: 'bar'
+            },
+            title: {
+              text: 'Nombre de visites par ordinateur'
+            },
+            credits: {
+              enabled: false
+            },
+            series: [
+              {
+                name: 'Nombre de Visite',
+                data: this.ordinateurList
+              } as any
+            ]
+          }
+        )
+
+        this.chartTablette = new Chart({
+            chart: {
+              type: 'bar'
+            },
+            title: {
+              text: 'Nombre de visites par Tablette'
+            },
+            credits: {
+              enabled: false
+            },
+            series: [
+              {
+                name: 'Nombre de Visite',
+                data: this.tabletteList
+              } as any
+            ]
+          }
+        )
+        console.log("ordinateurList", this.ordinateurList);
+        console.log("smartphoneList", this.smartphoneList);
+        console.log("tabletteList", this.tabletteList);
       }, error => {
         console.log(error);
-
       }
     );
   }
 
-  byMonth(uai: string) {
-    this.dnmaService.findByMonth(uai).subscribe(
-      (response: any) => {
-        this.dataset = response.results;
-        this.dataset.sort((a: any, b: any) => a["month(debutsemaine)"] - b["month(debutsemaine)"]);
-        console.log(this.dataset);
-      }, error => {
-        console.log(error);
 
-      }
-    );
-  }
+
+
+
+
 
 }

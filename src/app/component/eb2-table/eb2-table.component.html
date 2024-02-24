@@ -4,8 +4,10 @@
     <table class="table table-bordered">
       <thead>
       <tr>
-        <th>Année</th>
-        <th>month</th>
+        <th *ngIf="year; else sinn">Année</th>
+        <ng-template #sinn>
+          <th>Mois</th>
+        </ng-template>
         <th>Total Visites Ordinateur</th>
         <th>Total Utilisateurs Ordinateur</th>
         <th>Durée Ordinateur</th>

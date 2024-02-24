@@ -1,0 +1,15 @@
+<div class=" col-md-6 mt-5 mx-auto">
+<h2>Téléchargement du Dataset</h2>
+
+<form [formGroup]="formulaire" (ngSubmit)="submitForm()">
+  <label for="choixSelect" class="mt-5">Choisissez le format de téléchargement :</label>
+
+  <select class="form-select w-25 mt-3" id="choixSelect" formControlName="choix">
+    <ng-container *ngFor="let file of listOfFiles">
+    <option value="{{ file.rel }}">{{ file.rel }}</option>
+    </ng-container>
+  </select>
+
+  <button type="submit" class="btn btn-primary w-25 mt-3">Télécharger</button>
+</form>
+</div>

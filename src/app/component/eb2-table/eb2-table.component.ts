@@ -10,6 +10,8 @@ import {ActivatedRoute} from "@angular/router";
 export class Eb2TableComponent implements OnInit {
   protected readonly Object = Object;
   dataset!: any;
+  year!: boolean;
+
 
   uai!: any;
   choix!: any;
@@ -27,8 +29,11 @@ export class Eb2TableComponent implements OnInit {
 
   fetchData(uai :string, choix :string){
     if(choix == "annee"){
+      this.year=true;
       this.byYear(uai);
     }else{
+      this.year=false;
+
       this.byMonth(uai);
     }
   }
